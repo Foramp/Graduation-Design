@@ -6,15 +6,79 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
 
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource">
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost/test">
+		</property>
+		<property name="user" value="root"></property>
+		<property name="password" value="123456"></property>
+		<!-- 数据库连接池的最大连接数 -->
+		<property name="maxPoolSize" value="4000"></property>
+		<!-- 数据库连接池的最小连接数 -->
+		<property name="minPoolSize" value="1"></property>
+		<!-- 数据库连接池的初始化连接数 -->
+		<property name="initialPoolSize" value="1"></property>
+		<!-- 指定连接数据库连接池的链接的最大空闲时间 -->
+		<property name="maxIdleTime" value="20"></property>
+		
 	</bean>
+	
+	<!-- 定义hibernate的sessionfactory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 依赖注入数据源，注入正是上面定义的datasource -->
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
+		
 		<property name="hibernateProperties">
 			<props></props>
 		</property>
-	</bean></beans>
+		<property name="mappingResources">
+			<list>
+				<value>com/domain/Users.hbm.xml</value>
+			</list>
+		
+		</property>
+		
+	</bean>
+	
+	<!-- DAO注入sessionFactory -->
+	<bean id="login" class="com.gd.dao.LoginDAOImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+		
+	<!-- service 注入dao id为下面的ref class 为service的实现类 name="service实现类中声明的dao" -->	
+	<bean id="logins" class="com.gd.service.LoginServiceImpl">
+		<property name="logindao" ref="login"/>
+	</bean>
+	
+	<!-- Action 注入service id="" 注入 class="action路径" 
+	name="loginservice" 与LoginAction 中声明的要保持一致 ref随便取
+	-->
+	<bean id="loginAction" class="com.gd.action.LoginAction" scope="prototype">
+		<property name="loginservice" ref="logins"></property>
+	</bean>
+</beans>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
