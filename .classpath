@@ -22,17 +22,27 @@
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.struts_2.1">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="#system#;web.struts2"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.hibernate_3.3">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="me.hibernate;#system#"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.spring_3.1">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="me.spring;#system#"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-entitymanager.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-3.1.14-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
